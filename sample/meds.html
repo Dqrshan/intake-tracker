@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Medicine Schedule</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    .glass{backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);background:rgba(255,255,255,.25);border:1px solid rgba(255,255,255,.35)}
+  </style>
+</head>
+<body class="bg-gradient-to-br from-slate-50 to-slate-200 text-slate-800 min-h-screen flex flex-col items-center p-6">
+
+  <header class="w-full max-w-3xl flex items-center justify-between mb-6">
+    <h1 class="text-2xl font-semibold tracking-tight">Medicine Schedule</h1>
+    <button class="text-sm glass px-3 py-1 rounded-full">+ Add</button>
+  </header>
+
+  <main class="w-full max-w-3xl space-y-3">
+
+    <!-- Taken -->
+    <div class="glass rounded-2xl p-4 flex items-center justify-between">
+      <div class="flex items-center gap-4">
+        <input type="checkbox" checked class="w-5 h-5 text-emerald-600 rounded">
+        <div>
+          <p class="font-medium">Lisinopril 5 mg</p>
+          <p class="text-xs text-slate-500">8:00 AM – once daily</p>
+        </div>
+      </div>
+      <span class="text-emerald-600 text-sm">✓ Taken</span>
+    </div>
+
+    <!-- Missed -->
+    <div class="glass rounded-2xl p-4 flex items-center justify-between border-rose-400">
+      <div class="flex items-center gap-4">
+        <input type="checkbox" class="w-5 h-5 text-rose-600 rounded">
+        <div>
+          <p class="font-medium">Metformin 500 mg</p>
+          <p class="text-xs text-slate-500">2:00 PM – with lunch</p>
+        </div>
+      </div>
+      <span class="text-rose-600 text-sm">Missed</span>
+    </div>
+
+    <!-- Upcoming -->
+    <div class="glass rounded-2xl p-4 flex items-center justify-between">
+      <div class="flex items-center gap-4">
+        <input type="checkbox" class="w-5 h-5 rounded">
+        <div>
+          <p class="font-medium">Atorvastatin 10 mg</p>
+          <p class="text-xs text-slate-500">10:00 PM – after dinner</p>
+        </div>
+      </div>
+      <button class="text-xs underline">Leaflet</button>
+    </div>
+
+  </main>
+
+</body>
+</html>

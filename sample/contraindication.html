@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Contraindication Alert</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    .glass{backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);background:rgba(255,255,255,.25);border:1px solid rgba(255,255,255,.35)}
+  </style>
+</head>
+<body class="bg-black/70 flex items-center justify-center min-h-screen p-6">
+
+  <!-- Modal -->
+  <section class="glass rounded-3xl p-6 w-full max-w-md space-y-4 text-slate-800">
+    <div class="flex items-center gap-3">
+      <span class="text-rose-600">⚠️</span>
+      <h2 class="font-semibold text-lg">Contraindication Alert</h2>
+    </div>
+    <p class="text-sm">The item you are logging contains <strong>grapefruit extract</strong>, which is known to interfere with your current medication <strong>Atorvastatin</strong>.</p>
+    <div class="bg-rose-100/60 rounded-xl p-3 text-sm">
+      <p class="font-medium mb-1">Safer alternatives</p>
+      <ul class="list-disc pl-5 text-slate-700">
+        <li>Orange slices</li>
+        <li>Berries</li>
+      </ul>
+    </div>
+    <div class="flex gap-3">
+      <button class="flex-1 glass py-2.5 rounded-xl">Cancel</button>
+      <button class="flex-1 bg-rose-600 text-white py-2.5 rounded-xl">I understand – log anyway</button>
+    </div>
+  </section>
+
+</body>
+</html>

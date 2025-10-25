@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Doctor Report Export</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    .glass{backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);background:rgba(255,255,255,.25);border:1px solid rgba(255,255,255,.35)}
+  </style>
+</head>
+<body class="bg-gradient-to-br from-slate-50 to-slate-200 text-slate-800 min-h-screen flex flex-col items-center p-6">
+
+  <header class="w-full max-w-3xl flex items-center justify-between mb-6">
+    <h1 class="text-2xl font-semibold tracking-tight">Export Report</h1>
+    <span class="text-xs glass px-3 py-1 rounded-full">Oct 18 – Oct 25</span>
+  </header>
+
+  <main class="w-full max-w-3xl glass rounded-3xl p-6 space-y-6">
+
+    <!-- Adherence -->
+    <section>
+      <h2 class="text-sm font-medium text-slate-600 mb-2">Medicine Adherence</h2>
+      <div class="h-3 bg-white/40 rounded-full overflow-hidden"><div class="h-full bg-emerald-500" style="width:87%"></div></div>
+      <p class="text-xs mt-1">87 % – 2 missed doses</p>
+    </section>
+
+    <!-- Sodium Spike -->
+    <section>
+      <h2 class="text-sm font-medium text-slate-600 mb-2">Nutrient Anomalies</h2>
+      <div class="bg-amber-100/60 rounded-xl p-3 text-sm">Sodium spike on Oct 22 (3.8 g) – consider reducing processed foods.</div>
+    </section>
+
+    <!-- Symptoms -->
+    <section>
+      <h2 class="text-sm font-medium text-slate-600 mb-2">Symptom Notes</h2>
+      <ul class="list-disc pl-5 text-sm space-y-1">
+        <li>Oct 23 – Mild headache after lunch.</li>
+        <li>Oct 24 – No adverse reactions.</li>
+      </ul>
+    </section>
+
+    <!-- Actions -->
+    <div class="flex gap-3 pt-4">
+      <button class="glass px-4 py-2 rounded-xl">Preview PDF</button>
+      <button class="bg-blue-600 text-white px-5 py-2 rounded-xl">Encrypt & Share Link</button>
+    </div>
+
+  </main>
+
+</body>
+</html>
