@@ -1,0 +1,15 @@
+{
+  "name": "intake-tracker",
+  "version": "1.0.0",
+  "description": "AI-powered nutrition and medicine tracking PWA",
+  "private": true,
+  "scripts": {
+    "dev": "cd apps/web && npm run dev:all",
+    "build": "cd apps/web && npm run build",
+    "start": "cd apps/web && npm start",
+    "install:all": "cd apps/web && npm install && cd ../../services/ml && pip install -r requirements.txt"
+  },
+  "keywords": ["nutrition", "medicine", "pwa", "ai", "health"],
+  "author": "Intake Tracker Team",
+  "license": "MIT"
+}

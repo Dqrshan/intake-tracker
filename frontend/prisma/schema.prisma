@@ -1,0 +1,34 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model Meal {
+  id        String   @id @default(cuid())
+  name      String
+  weight_g  Int
+  kcal      Int
+  protein_g Int
+  carbs_g   Int
+  fat_g     Int
+  createdAt DateTime @default(now())
+}
+
+model Medicine {
+  id      String @id @default(cuid())
+  name    String
+  dosage  String
+  time    String // "HH:MM"
+  intakes MedicineIntake[]
+}
+
+model MedicineIntake {
+  id         String   @id @default(cuid())
+  medicineId String
+  takenAt    DateTime @default(now())
+  medicine   Medicine @relation(fields: [medicineId], references: [id], onDelete: Cascade)
+}

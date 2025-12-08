@@ -1,0 +1,4 @@
+# Mock ONNX model file - replace with actual trained model
+# This is a placeholder for the calorie estimation model
+# In production, this would be a quantized INT8 ONNX model (~400KB)
+MOCK_CALORIE_MODEL = True
