@@ -43,6 +43,11 @@ export default function Capture() {
 
     // Camera handling
     const startCamera = async () => {
+        if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
+            alert('Camera API not supported in this browser. Please use a modern browser or ensure you are on HTTPS.')
+            return
+        }
+
         try {
             const mediaStream = await navigator.mediaDevices.getUserMedia({
                 video: { facingMode: 'environment' }
@@ -52,8 +57,20 @@ export default function Capture() {
                 videoRef.current.srcObject = mediaStream
             }
         } catch (err) {
-            console.error('Camera error:', err)
-            alert('Unable to access camera')
+            console.error('Camera error (environment):', err)
+            // Fallback to any camera
+            try {
+                const mediaStream = await navigator.mediaDevices.getUserMedia({
+                    video: true
+                })
+                setStream(mediaStream)
+                if (videoRef.current) {
+                    videoRef.current.srcObject = mediaStream
+                }
+            } catch (fallbackErr) {
+                console.error('Camera error (fallback):', fallbackErr)
+                alert('Unable to access camera. Please ensure you have granted permission and are using HTTPS.')
+            }
         }
     }
 
@@ -92,8 +109,8 @@ export default function Capture() {
         try {
             const res = await fetch('/api/infer', { method: 'POST', body: formData })
             const data = await res.json()
-            if (data.results && data.results.length > 0) {
-                setResult(data.results[0])
+            if (data.dishes && data.dishes.length > 0) {
+                setResult(data.dishes[0])
                 setShowConfirm(true)
             } else {
                 alert('Could not recognize food. Please try again.')
@@ -114,11 +131,14 @@ export default function Capture() {
             const res = await fetch(endpoint, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ text: input })
+                body: JSON.stringify({ description: input })
             })
             const data = await res.json()
-            if (data.results) {
-                setResult(data.results[0]) // Assuming single result for now
+            if (data.dishes && data.dishes.length > 0) {
+                setResult(data.dishes[0])
+                setShowConfirm(true)
+            } else if (data.name && data.kcal !== undefined) {
+                setResult(data)
                 setShowConfirm(true)
             }
         } catch (error) {

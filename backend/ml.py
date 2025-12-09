@@ -324,6 +324,7 @@ async def nutrition_chat(request: ChatRequest):
         
         prompt = f"""You are a helpful and knowledgeable nutrition and health assistant. 
 Provide accurate, science-based information about nutrition, diet, and wellness.
+Do not cross more than 75 words in your message, do not use any markdown. 
 
 Guidelines:
 1. Be helpful and conversational

@@ -3,7 +3,7 @@ import { NextRequest, NextResponse } from 'next/server'
 export async function POST(request: NextRequest) {
     try {
         const formData = await request.formData()
-        const image = formData.get('image') as File
+        const image = formData.get('file') as File
 
         if (!image) {
             return NextResponse.json({ error: 'No image provided' }, { status: 400 })

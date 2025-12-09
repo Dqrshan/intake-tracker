@@ -38,6 +38,25 @@ export default function Settings() {
     })
     const [notifications, setNotifications] = useState(true)
     const [darkMode, setDarkMode] = useState(true)
+    const [deferredPrompt, setDeferredPrompt] = useState<any>(null)
+
+    useEffect(() => {
+        const handler = (e: any) => {
+            e.preventDefault()
+            setDeferredPrompt(e)
+        }
+        window.addEventListener('beforeinstallprompt', handler)
+        return () => window.removeEventListener('beforeinstallprompt', handler)
+    }, [])
+
+    const installApp = async () => {
+        if (!deferredPrompt) return
+        deferredPrompt.prompt()
+        const { outcome } = await deferredPrompt.userChoice
+        if (outcome === 'accepted') {
+            setDeferredPrompt(null)
+        }
+    }
 
     useEffect(() => {
         const savedGoals = localStorage.getItem('nutritionGoals')
@@ -149,6 +168,12 @@ export default function Settings() {
                 <div>
                     <h2 className="text-[#8E8E93] text-xs font-semibold uppercase ml-3 mb-2">App</h2>
                     <div className="ios-card overflow-hidden">
+                        {deferredPrompt && (
+                            <div className="p-4 border-b border-[#2C2C2E] flex justify-between items-center">
+                                <span className="font-medium">Install App</span>
+                                <button onClick={installApp} className="text-[#0A84FF] text-sm font-semibold">Install</button>
+                            </div>
+                        )}
                         <div className="p-4 border-b border-[#2C2C2E] flex justify-between items-center">
                             <span className="font-medium">Notifications</span>
                             <div
